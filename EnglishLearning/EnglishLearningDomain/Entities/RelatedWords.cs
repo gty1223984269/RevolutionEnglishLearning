@@ -13,13 +13,13 @@ namespace EnglishLearningDomain.Entities
         public Int64 RootId { get; set; }
 
         [StringLength(100)]
-        public bool Word { get; set; }
+        public string Word { get; set; }
 
         [StringLength(300)]
-        public bool ChineseMeaning { get; set; }
+        public string ChineseMeaning { get; set; }
 
         [StringLength(400)]
-        public bool RememberLogic { get; set; }
+        public string RememberLogic { get; set; }
 
 
     }

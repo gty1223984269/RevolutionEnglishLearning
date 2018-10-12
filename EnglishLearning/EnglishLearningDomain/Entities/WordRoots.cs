@@ -11,10 +11,10 @@ namespace EnglishLearningDomain.Entities
         public bool IsActive { get; set; }
 
         [StringLength(100)]
-        public bool Word { get; set; }
+        public string Word { get; set; }
 
         [StringLength(300)]
-        public bool ChineseMeaning { get; set; }
+        public string ChineseMeaning { get; set; }
 
     }
 }
