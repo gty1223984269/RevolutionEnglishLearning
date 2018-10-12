@@ -19,6 +19,8 @@ namespace EnglishLearning
 
         }
         public DbSet<Administrator> Administrators { get; set; }
+        public DbSet<WordRoots> WordRoots { get; set; }
+        public DbSet<RelatedWords> RelatedWords { get; set; }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -38,6 +40,8 @@ namespace EnglishLearning
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new AdministratorEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new WordRootEntityTypeConfigrution());
+            modelBuilder.ApplyConfiguration(new RelatedWordsEntityTypeConfiguration());
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
