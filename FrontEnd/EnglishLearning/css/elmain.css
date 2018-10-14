@@ -1,0 +1,33 @@
+.boxword
+{
+    text-align:center;
+	width:200px;
+	height:200px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:12px;
+	display: inline-block;
+    margin-top: 15px;
+    margin-left: 10px;
+	background-color:#bbeffb;
+}
+
+.textLeft
+{
+	text-align:left;
+}
+
+.boxContent
+{
+text-indent:15px;
+background-color:#bbeffb;
+height:100px;
+overflow:hidden;
+padding-right:13px;
+padding-bottom:13px;
+}
+
+.boxContentspan{
+display:block;
+	
+}
