@@ -91,16 +91,20 @@
 </body>
 <script>
 	$(document).ready(function(){
-		Tool.sendGetRequest();
+		Tool.sendGetRequest(1);
 		$(".previous").click(function(){
 			
-			
+			var CurrentPage=$("#currentPage").text();
+			Tool.sendGetRequest(parseInt(CurrentPage)-1);
+			$("#currentPage").text(parseInt(CurrentPage)-1);
 			
 		})
 		
 		$(".next").click(function(){
-			
-			
+				var CurrentPage=$("#currentPage").text();
+				Tool.sendGetRequest(parseInt(CurrentPage)+1);
+				$("#currentPage").text(parseInt(CurrentPage)+1);
+
 			
 		})
 	})

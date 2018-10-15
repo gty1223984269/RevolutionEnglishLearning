@@ -1,14 +1,15 @@
  var Tool={};
- Tool.url="http://localhost:62861/api/WordRoot/AllWordRoots?pageNumber=1";
+ Tool.url="http://localhost:62861/api/WordRoot/AllWordRoots?pageNumber=";
  
 function createContent(word,wordmeaning)
  {
 	$("#WordContent").append("<div class='boxword'><h3 class='bgWhite'>"+word+"</h3><h4 class='textLeft'>汉语释义:</h4><div class='boxContent'>  <span class='boxContentspan'>"+wordmeaning+"</span></div></div>");
 	 
  }
-Tool.sendGetRequest=function()
+Tool.sendGetRequest=function(index)
  {
-	 $.get(Tool.url,function(data,status){
+	 $.get(Tool.url+index,function(data,status){
+		 $("#wordCount").text("");
 		 $("#wordCount").append(data.pageCount);
 		   
 			 $.each(data,function(index,value){
