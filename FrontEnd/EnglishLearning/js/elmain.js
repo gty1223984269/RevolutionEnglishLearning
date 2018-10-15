@@ -11,7 +11,7 @@ Tool.sendGetRequest=function(index)
 	 $.get(Tool.url+index,function(data,status){
 		 $("#WordContent").empty();
 		 $("#wordCount").text("");
-		 $("#wordCount").append(data.pageCount);
+		 $("#wordCount").append("词根总数"+data.pageCount);
 		   
 			 $.each(data,function(index,value){
 				 
