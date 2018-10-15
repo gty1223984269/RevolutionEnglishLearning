@@ -93,18 +93,25 @@
 	$(document).ready(function(){
 		Tool.sendGetRequest(1);
 		$(".previous").click(function(){
-			
 			var CurrentPage=$("#currentPage").text();
 			Tool.sendGetRequest(parseInt(CurrentPage)-1);
-			$("#currentPage").text(parseInt(CurrentPage)-1);
-			
+			var CurrentPage=$("#currentPage").text(parseInt(CurrentPage)-1);
+			if(	$("#currentPage").text()=="0")
+			{
+				$("#currentPage").text(1);
+				
+			}
 		})
 		
 		$(".next").click(function(){
 				var CurrentPage=$("#currentPage").text();
 				Tool.sendGetRequest(parseInt(CurrentPage)+1);
 				$("#currentPage").text(parseInt(CurrentPage)+1);
-
+        if(	$("#currentPage").text()==$("#wordCount").text())
+        {
+        	$("#currentPage").text($("#wordCount").text());
+        	
+        }
 			
 		})
 	})
