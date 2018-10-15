@@ -9,7 +9,8 @@ function createContent(word,wordmeaning)
 Tool.sendGetRequest=function()
  {
 	 $.get(Tool.url,function(data,status){
-	 		console.log(data);
+		 $("#wordCount").append(data.pageCount);
+		   
 			 $.each(data,function(index,value){
 				 
 				 $.each(value,function(index,value)
