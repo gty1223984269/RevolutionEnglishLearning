@@ -16,7 +16,7 @@ namespace EnglishLearning.Controllers
     public class WordRootController : Controller
     {
         private readonly EnglishLearningDbContext _englishLearningDbContext;
-        public readonly int pageSize = 12;
+        public readonly int pageSize = 8;
 
         public WordRootController(EnglishLearningDbContext englishLearningDbContext)
         {
