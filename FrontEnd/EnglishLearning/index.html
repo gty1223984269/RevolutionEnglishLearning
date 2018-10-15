@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
     <title>Bootstrap 实例 - 倒置的导航栏</title>
-	<<link rel="stylesheet" type="text/css" href="css/elmain.css"/>
+	<link rel="stylesheet" type="text/css" href="css/elmain.css"/>
 	<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<script src="lib/jquery-2.1.1/jquery.min.js"></script>
 	<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>	
+	<script src="js/elmain.js"></script>	
 </head>
 <body>
 <div class=container>
@@ -41,75 +42,21 @@
  <div id="content" class="row-fluid">
         <div class="col-md-10">
 			
-            <h2>词根和词意</h2>
-			
 			<div class="panel panel-default">
     <div class="panel-body">
-  <div class="boxword">
-	  <h3 class="bgWhite">abdc</h3>
-	  <h4 class="textLeft">汉语释义:</h4>
-	  <div class="boxContent">  
-	  <span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-	  </div>	 
-	
-    </div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	<div class="boxword">
-		<h3 class="bgWhite">abdc</h3>
-		<h4 class="textLeft">汉语释义:</h4>
-		<div class="boxContent">  
-		<span class="boxContentspan">防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法，防守打法水电费水电费双方都是否水电费胜多负少方式防守打法</span>
-		</div>	 
-	
-	</div>
-	
+			<div id="WordContent">
+				</div>
+			
+	<div>
+		<nav style="text-align: center">
+		<ul class="pager">
+	<li class="previous"><a href="#">&larr; Older</a></li>
+	<li class="next"><a href="#">Newer &rarr;</a></li>
+	<span id="currentPage">1</span>
+</ul>
+
+		</nav>
+		</div>
 	
 </div>
 			
@@ -141,4 +88,11 @@
 </nav>
 </div>
 </body>
+<script>
+	$(document).ready(function(){
+		Tool.sendGetRequest();
+		
+	})
+	
+</script>
 </html>

@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EnglishLearningDomain.Entities;
+using EnglishLearningDomain.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace EnglishLearning.Controllers
 {
     [Produces("application/json")]
     [Route("api/WordRoot")]
-
+    [EnableCors("any")]
     public class WordRootController : Controller
     {
         private readonly EnglishLearningDbContext _englishLearningDbContext;
-        public readonly int pageSize = 10;
+        public readonly int pageSize = 12;
 
         public WordRootController(EnglishLearningDbContext englishLearningDbContext)
         {
@@ -23,11 +26,14 @@ namespace EnglishLearning.Controllers
 
         [HttpGet]
         [Route("AllWordRoots")]
-        public List<WordRoots> getWordRoots(int pageNumber)
+        public IActionResult getWordRootsAsync(int pageNumber)
         {
              int skipIndex = pageSize * (pageNumber - 1);
-
-            return _englishLearningDbContext.WordRoots?.Skip(skipIndex).Take(pageSize).ToList();
+            RootPageModel rootPageModel = new RootPageModel();
+            var result = _englishLearningDbContext.WordRoots;
+            rootPageModel.pageCount = result.Count();
+            rootPageModel.wordRoots = result?.Skip(skipIndex).Take(pageSize).ToList();
+            return Ok(rootPageModel);
         }
 
 
