@@ -32,7 +32,7 @@ namespace EnglishLearning.Controllers
             RootPageModel rootPageModel = new RootPageModel();
             var result = _englishLearningDbContext.WordRoots;
             rootPageModel.pageCount = result.Count();
-            rootPageModel.wordRoots = result?.Skip(skipIndex).Take(pageSize).ToList();
+            rootPageModel.wordRoots = result?.Where(a=>a.IsActive==true).Skip(skipIndex).Take(pageSize).ToList();
             return Ok(rootPageModel);
         }
 
