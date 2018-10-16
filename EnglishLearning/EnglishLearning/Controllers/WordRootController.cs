@@ -44,6 +44,27 @@ namespace EnglishLearning.Controllers
             return _englishLearningDbContext.RelatedWords?.Where(a => a.RootId == wordRootId).ToList();
         }
 
+        [HttpPut]
+        [Route("AddRelateWord")]
+        public async Task<IActionResult> AddRelateWord(RelatedWords relatedWords)
+        {
+            _englishLearningDbContext.AddRange(relatedWords);
+            await _englishLearningDbContext.SaveChangesAsync();
+            return NoContent();
+
+          }
+
+        [HttpPut]
+        [Route("AddWordRoot")]
+        public async Task<IActionResult> AddWordRoot(WordRoots wordRoots)
+        {
+            _englishLearningDbContext.AddRange(wordRoots);
+            await _englishLearningDbContext.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+
     }
 }
     
