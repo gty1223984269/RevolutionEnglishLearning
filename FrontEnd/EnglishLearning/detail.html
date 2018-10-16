@@ -90,6 +90,10 @@
 		var word=addressObject.word;
 		Tool.sendGetRequestForAllWords(wordId,word);
 		
+		$("#WordContent").on('click','.bgWhite',function(event){
+			console.log($(event.target).attr('attrid'));
+		})
+		
 	})
 	
 </script>
