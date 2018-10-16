@@ -27,21 +27,22 @@ Tool.sendGetRequest=function(index)
  }
  
  
- function createContentDetail(word,chineseMeaning,id,rememberLogic,wordrootcc)
+ function createContentDetail(word,chineseMeaning,id,rememberLogic,wordroot)
   {	
+		// var str="<span style='color:red'>"+word+"</span><span></span>";
  	$("#WordContent").append("<div class='boxword extraHeight'><h3 class='bgWhite'>"+word+"</h3><h4 class='textLeft'>汉语释义:</h4><div class='boxContent reduceHeight'> <span class='boxContentspan'>"+chineseMeaning+"</span></div><h4 class='textLeft'>记忆逻辑:</h4><div class='boxContent'> <span class='boxContentspan'>"+rememberLogic+"</span></div><div></div></div>");
  	 
   }
  
-Tool.sendGetRequestForAllWords=function(wordId,wordsb)
+Tool.sendGetRequestForAllWords=function(wordId,wordroot)
   {
 		
 		$("#wordRootSB").empty();
 		$("#wordRootSB").text("");
-		$("#wordRootSB").append("词根:"+wordsb);
+		$("#wordRootSB").append("词根:"+wordroot);
  	 $.get(Tool.address+wordId,function(data,status){
  			 $.each(data,function(index,value){
- 					 createContentDetail(value.word,value.chineseMeaning,value.id,value.rememberLogic,wordrootcc);
+ 					 createContentDetail(value.word,value.chineseMeaning,value.id,value.rememberLogic,wordroot);
  					  });
  	 		
  	 
