@@ -29,8 +29,12 @@ Tool.sendGetRequest=function(index)
  
  function createContentDetail(word,chineseMeaning,id,rememberLogic,wordroot)
   {	
-		// var str="<span style='color:red'>"+word+"</span><span></span>";
- 	$("#WordContent").append("<div class='boxword extraHeight'><h3 class='bgWhite'>"+word+"</h3><h4 class='textLeft'>汉语释义:</h4><div class='boxContent reduceHeight'> <span class='boxContentspan'>"+chineseMeaning+"</span></div><h4 class='textLeft'>记忆逻辑:</h4><div class='boxContent'> <span class='boxContentspan'>"+rememberLogic+"</span></div><div></div></div>");
+		var wordRed="<span style='color:red'>"+wordroot+"</span>";
+		
+		 var str="<span>"+word+"</span>";
+		 var  re = new RegExp(wordroot,"g");
+			var finalStr= word.replace(re,wordRed)
+ 	$("#WordContent").append("<div class='boxword extraHeight'><h3 class='bgWhite'>"+finalStr+"</h3><h4 class='textLeft'>汉语释义:</h4><div class='boxContent reduceHeight'> <span class='boxContentspan'>"+chineseMeaning+"</span></div><h4 class='textLeft'>记忆逻辑:</h4><div class='boxContent'> <span class='boxContentspan'>"+rememberLogic+"</span></div><div></div></div>");
  	 
   }
  
