@@ -10,6 +10,7 @@
     margin-top: 15px;
     margin-left: 10px;
 	background-color:#bbeffb;
+	z-index: 1000000000000000000;
 }
 
 .textLeft
@@ -26,8 +27,23 @@ overflow:hidden;
 padding-right:13px;
 padding-bottom:13px;
 }
-
+.textIndent
+{
+text-indent:15px;
+}
 .boxContentspan{
 display:block;
 	
+}
+#blockinline
+{
+display: inline;
+}
+.extraHeight
+{
+	height: 300px;
+}
+.reduceHeight
+{
+	height:40px;
 }

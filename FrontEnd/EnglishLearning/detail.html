@@ -40,13 +40,16 @@
 </nav>	
 
  <div id="content" class="row-fluid">
-	  <h2 id="wordCount">词根总数：</h2>
-        <div class="col-md-10">
+	  <h2 id="wordRootSB">词根：</h2>
+        <div class="col-md-12">
 			
 			<div class="panel panel-default">
     <div class="panel-body">
-			<div id="WordContent">
-				</div>
+			
+				<div id="WordContent">
+					
+					
+			
 			
 	<div>
 		<nav style="text-align: center">
@@ -64,15 +67,6 @@
         </div>
        
     </div>
-	
-	 <div class="col-md-2">
-	    <h2>Sidebar</h2>
-	    <ul class="nav nav-tabs nav-stacked">
-	        <li><a href='#'>Another Link 1</a></li>
-	        <li><a href='#'>Another Link 2</a></li>
-	        <li><a href='#'>Another Link 3</a></li>
-	    </ul>    
-	</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 	<div class="container-fluid"> 
    
@@ -91,30 +85,10 @@
 </body>
 <script>
 	$(document).ready(function(){
-		
-	
-		Tool.sendGetRequest(1);
-		$(".previous").click(function(){
-			var CurrentPage=$("#currentPage").text();
-			Tool.sendGetRequest(parseInt(CurrentPage)-1);
-			var CurrentPage=$("#currentPage").text(parseInt(CurrentPage)-1);
-			if(	$("#currentPage").text()=="0")
-			{
-				$("#currentPage").text(1);
-				
-			}
-		})
-		
-		$(".next").click(function(){
-				var CurrentPage=$("#currentPage").text();
-				Tool.sendGetRequest(parseInt(CurrentPage)+1);
-				$("#currentPage").text(parseInt(CurrentPage)+1);
-        if(	$("#currentPage").text()==$("#wordCount").text())
-        {
-        	$("#currentPage").text($("#wordCount").text());
-        	
-        }
-		})
+		var addressObject = Tool.getAddress("wordRootId");
+		var wordId=addressObject.wordRootId;
+		var word=addressObject.word;
+		Tool.sendGetRequestForAllWords(wordId,word);
 	})
 	
 </script>
