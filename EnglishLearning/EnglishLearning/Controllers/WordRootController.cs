@@ -48,7 +48,12 @@ namespace EnglishLearning.Controllers
         [Route("AddRelateWord")]
         public async Task<IActionResult> AddRelateWord(RelatedWords relatedWords)
         {
-            _englishLearningDbContext.AddRange(relatedWords);
+          var entity=  _englishLearningDbContext.RelatedWords.Where(a => a.Id == relatedWords.Id).FirstOrDefault();
+            entity.RememberLogic = relatedWords.RememberLogic;
+            entity.Id = relatedWords.Id;
+            entity.Word = relatedWords.Word;
+            entity.ChineseMeaning = relatedWords.ChineseMeaning;
+            _englishLearningDbContext.AddRange(entity);
             await _englishLearningDbContext.SaveChangesAsync();
             return NoContent();
 
@@ -61,6 +66,15 @@ namespace EnglishLearning.Controllers
             _englishLearningDbContext.AddRange(wordRoots);
             await _englishLearningDbContext.SaveChangesAsync();
             return NoContent();
+
+        }
+
+        [HttpGet]
+        [Route("GetRelatedWordEntity")]
+        public IActionResult GetWordEntity(int entityId)
+        {
+
+            return Ok(_englishLearningDbContext.RelatedWords.Where(a => a.Id == entityId && a.IsActive == true));
 
         }
 
