@@ -48,13 +48,20 @@ namespace EnglishLearning.Controllers
         [Route("AddRelateWord")]
         public async Task<IActionResult> AddRelateWord(RelatedWords relatedWords)
         {
-          var entity=  _englishLearningDbContext.RelatedWords.Where(a => a.Id == relatedWords.Id).FirstOrDefault();
-            entity.RememberLogic = relatedWords.RememberLogic;
-            entity.Id = relatedWords.Id;
-            entity.Word = relatedWords.Word;
-            entity.ChineseMeaning = relatedWords.ChineseMeaning;
-            _englishLearningDbContext.AddRange(entity);
-            await _englishLearningDbContext.SaveChangesAsync();
+            try {
+                var entity = _englishLearningDbContext.RelatedWords.Where(a => a.Id == relatedWords.Id).FirstOrDefault();
+                entity.RememberLogic = relatedWords.RememberLogic==null?"": relatedWords.RememberLogic;
+                entity.Word = relatedWords.Word==null?"": relatedWords.Word;
+                entity.ChineseMeaning = relatedWords.ChineseMeaning==null?"": relatedWords.ChineseMeaning;
+                _englishLearningDbContext.Update(entity);
+                await _englishLearningDbContext.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                Console.WriteLine(ex.StackTrace);
+
+            }
+            
             return NoContent();
 
           }

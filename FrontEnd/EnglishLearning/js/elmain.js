@@ -2,6 +2,9 @@
  Tool.url="http://localhost:62861/api/WordRoot/AllWordRoots?pageNumber=";
  Tool.address="http://localhost:62861/api/WordRoot/AllRelatedWordByRootId?wordRootId=";
  Tool.GetRelatedWordEntityAddress="http://localhost:62861/api/WordRoot/GetRelatedWordEntity?entityId=";
+ Tool.PutRelatedWordEntityAddress="http://localhost:62861/api/WordRoot/AddRelateWord";
+
+ 
 function createContent(word,wordmeaning,id)
  {	
 	$("#WordContent").append("<div class='boxword'><h3 class='bgWhite'><a href=detail.html?wordRootId="+id+"&word="+word+">"+word+"</a></h3><h4 class='textLeft'>汉语释义:</h4><div class='boxContent'>  <span class='boxContentspan'>"+wordmeaning+"</span><span style='display:none' id='wordId'>"+id+"</span></div>");
@@ -74,11 +77,29 @@ Tool.sendGetRequestForAllWords=function(wordId,wordroot)
 				  {
 				 	 $.get(Tool.GetRelatedWordEntityAddress+wordId,function(data,status){
 				 			 $.each(data,function(index,value){
+								 
 				 					$("#word").val(value.word);
 									$("#wordMeaning").val(value.chineseMeaning);
 									$("#remembeLogic").val(value.rememberLogic);
+									$("#wordRelated").text(value.id);
 				 					  });
 				 	 		
 				 	 
 				  });
 				 }
+				 
+				 
+				 
+Tool.PutRelatedEntiy=function(id,chineseMeaning,rememberLogic,word){
+	var data = {'id':id, 'chineseMeaning': chineseMeaning,'rememberLogic':rememberLogic,'word':word};
+	$.ajax({
+   url: Tool.PutRelatedWordEntityAddress,
+   type: 'PUT',
+   data:data,
+   success: function( response ) {
+		 
+	parent.location.reload();
+   }
+
+})
+}
