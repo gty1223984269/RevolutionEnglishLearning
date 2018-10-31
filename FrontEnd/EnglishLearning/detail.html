@@ -10,7 +10,53 @@
 	<script src="js/elmain.js"></script>	
 </head>
 <body>
-<div class=container>
+<div class="container">
+	<span id=wordRelated style="display: none;"></span>
+		<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						模态框（Modal）标题
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-body">
+				<h3 style="text-align: center;">编辑页面</h3>
+						<form role="form">
+					<div class="form-group">
+						<label for="name">单词</label>
+						<input type="text" class="form-control" id="word" 
+							   placeholder="请输入单词">
+							   <label for="name">汉语释义</label>
+							   <input type="text" class="form-control" id="wordMeaning" 
+							   	placeholder="请输入汉语释义">
+								<label for="name">记忆逻辑</label>
+								<input type="text" class="form-control" id="remembeLogic" 
+								placeholder="请输入记忆逻辑">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> 是否有效
+						</label>
+					</div>
+				</form>
+				</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" id="Save" class="btn btn-primary">
+						提交更改
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
     <div class="navbar-header">
@@ -40,13 +86,16 @@
 </nav>	
 
  <div id="content" class="row-fluid">
-	  <h2 id="wordCount">词根总数：</h2>
-        <div class="col-md-10">
+	  <h2 id="wordRootSB">词根：</h2>
+        <div class="col-md-12">
 			
 			<div class="panel panel-default">
-    <div class="panel-body">
-			<div id="WordContent">
-				</div>
+      <div class="panel-body">
+			
+				<div id="WordContent">
+					
+					</div>
+			
 			
 	<div>
 		<nav style="text-align: center">
@@ -64,15 +113,6 @@
         </div>
        
     </div>
-	
-	 <div class="col-md-2">
-	    <h2>Sidebar</h2>
-	    <ul class="nav nav-tabs nav-stacked">
-	        <li><a href='#'>Another Link 1</a></li>
-	        <li><a href='#'>Another Link 2</a></li>
-	        <li><a href='#'>Another Link 3</a></li>
-	    </ul>    
-	</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 	<div class="container-fluid"> 
    
@@ -91,30 +131,24 @@
 </body>
 <script>
 	$(document).ready(function(){
+		var addressObject = Tool.getAddress("wordRootId");
+		var wordId=addressObject.wordRootId;
+		var word=addressObject.word;
+		Tool.sendGetRequestForAllWords(wordId,word);
 		
-	
-		Tool.sendGetRequest(1);
-		$(".previous").click(function(){
-			var CurrentPage=$("#currentPage").text();
-			Tool.sendGetRequest(parseInt(CurrentPage)-1);
-			var CurrentPage=$("#currentPage").text(parseInt(CurrentPage)-1);
-			if(	$("#currentPage").text()=="0")
-			{
-				$("#currentPage").text(1);
-				
-			}
+		$("#WordContent").on('click','.bgWhite',function(event){
+			Tool.getRelatedWordEntity($(event.target).attr('attrid'));
+			$("#myModal").modal('show')
+			
 		})
 		
-		$(".next").click(function(){
-				var CurrentPage=$("#currentPage").text();
-				Tool.sendGetRequest(parseInt(CurrentPage)+1);
-				$("#currentPage").text(parseInt(CurrentPage)+1);
-        if(	$("#currentPage").text()==$("#wordCount").text())
-        {
-        	$("#currentPage").text($("#wordCount").text());
-        	
-        }
-		})
+		$("#Save").click(function(){
+		
+			Tool.PutRelatedEntiy($("#wordRelated").text(),$("#wordMeaning").val(),$("#remembeLogic").val(),$("#word").val());
+			$("#myModal").modal('hide');
+		
+			
+		})		
 	})
 	
 </script>

@@ -1,0 +1,11 @@
+var wordRelated={};
+wordRelated.isActive="";
+wordRelated.rootId="";
+wordRelated.word="";
+wordRelated.chineseMeaning="";
+wordRelated.rememberLogic="";
+wordRelated.id="";
+wordRelated.createdDateTimeUtc="";
+wordRelated.createdBy="";
+wordRelated.updatedDateTimeUtc="";
+wordRelated.updatedBy="";

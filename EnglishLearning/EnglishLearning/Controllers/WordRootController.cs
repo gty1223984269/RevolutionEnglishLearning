@@ -32,7 +32,7 @@ namespace EnglishLearning.Controllers
             RootPageModel rootPageModel = new RootPageModel();
             var result = _englishLearningDbContext.WordRoots;
             rootPageModel.pageCount = result.Count();
-            rootPageModel.wordRoots = result?.Skip(skipIndex).Take(pageSize).ToList();
+            rootPageModel.wordRoots = result?.Where(a=>a.IsActive==true).Skip(skipIndex).Take(pageSize).ToList();
             return Ok(rootPageModel);
         }
 
@@ -43,6 +43,48 @@ namespace EnglishLearning.Controllers
         {
             return _englishLearningDbContext.RelatedWords?.Where(a => a.RootId == wordRootId).ToList();
         }
+
+        [HttpPut]
+        [Route("AddRelateWord")]
+        public async Task<IActionResult> AddRelateWord(RelatedWords relatedWords)
+        {
+            try {
+                var entity = _englishLearningDbContext.RelatedWords.Where(a => a.Id == relatedWords.Id).FirstOrDefault();
+                entity.RememberLogic = relatedWords.RememberLogic==null?"": relatedWords.RememberLogic;
+                entity.Word = relatedWords.Word==null?"": relatedWords.Word;
+                entity.ChineseMeaning = relatedWords.ChineseMeaning==null?"": relatedWords.ChineseMeaning;
+                _englishLearningDbContext.Update(entity);
+                await _englishLearningDbContext.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                Console.WriteLine(ex.StackTrace);
+
+            }
+            
+            return NoContent();
+
+          }
+
+        [HttpPut]
+        [Route("AddWordRoot")]
+        public async Task<IActionResult> AddWordRoot(WordRoots wordRoots)
+        {
+            _englishLearningDbContext.AddRange(wordRoots);
+            await _englishLearningDbContext.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+        [HttpGet]
+        [Route("GetRelatedWordEntity")]
+        public IActionResult GetWordEntity(int entityId)
+        {
+
+            return Ok(_englishLearningDbContext.RelatedWords.Where(a => a.Id == entityId && a.IsActive == true));
+
+        }
+
 
     }
 }
